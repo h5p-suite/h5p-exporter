@@ -1,0 +1,364 @@
+/* ==========================================================================
+   H5P Suite - Documentação de Plugin (Plugin Docs Design System)
+   Theme: Light (default) with Dark Mode Toggle Support
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@500;700&display=swap');
+
+:root, html[data-theme="light"] {
+    --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+
+    /* Palette - Light Theme */
+    --bg-page: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --bg-surface-glass: rgba(255, 255, 255, 0.85);
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F1F5F9;
+    --bg-subtle: #F1F5F9;
+
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+    
+    --border-color: #E2E8F0;
+    --border-hover: #CBD5E1;
+
+    --primary: #4F46E5;
+    --primary-hover: #4338CA;
+    --primary-light: #EEF2FF;
+    --primary-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 12px 28px -6px rgba(15, 23, 42, 0.12);
+
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html[data-theme="dark"] {
+    --bg-page: #0B0F19;
+    --bg-surface: #1E293B;
+    --bg-surface-glass: rgba(15, 23, 42, 0.85);
+    --bg-card: #1E293B;
+    --bg-card-hover: #334155;
+    --bg-subtle: #1E293B;
+
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+
+    --border-color: #334155;
+    --border-hover: #475569;
+
+    --primary: #6366F1;
+    --primary-hover: #818CF8;
+    --primary-light: rgba(99, 102, 241, 0.15);
+    --primary-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 28px -6px rgba(0, 0, 0, 0.5);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.5rem;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.brand-badge {
+    background: var(--primary-gradient);
+    color: #FFFFFF;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.theme-toggle-btn {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.hero {
+    padding: 3.5rem 0 2.5rem;
+    text-align: center;
+    background: radial-gradient(circle at 50% 0%, var(--primary-light) 0%, transparent 70%);
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1.25rem;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.hero-title span {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin: 0 auto 1.75rem;
+}
+
+.section {
+    padding: 2.5rem 0;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.info-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.info-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.pedagogical-highlight {
+    background: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    margin: 1.5rem 0;
+}
+
+.team-author-wrapper {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding: 3.5rem 0;
+    margin-top: 3.5rem;
+}
+
+.author-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.author-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.author-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+}
+
+.author-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.author-role {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.author-affiliation {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.academic-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.badge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-fast);
+}
+
+.badge-link:hover {
+    background: var(--primary);
+    color: #FFFFFF;
+    border-color: var(--primary);
+}
+
+.team-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.team-card {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    border-radius: 0.85rem;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.team-card-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+.site-footer {
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-page);
+    padding: 1.75rem 0;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: auto;
+}
